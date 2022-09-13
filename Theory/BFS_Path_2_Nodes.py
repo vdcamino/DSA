@@ -1,5 +1,4 @@
 # Check if there is a path between two vertices of a graph using BFS
-
 from collections import defaultdict
 
 # This class represents a directed graph using adjacency list representation
