@@ -29,11 +29,16 @@ def bfs(grid):
     visited = set()
     directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
     q.append([0, (0, 0)])  # start at the origin
+    path_list = [[(0, 0)]]  # list containing all the path we have passed
+    path_index = int(
+        0
+    )  # index that will allow us to retrieve the shortest path from our path_list
     while q:
+        current_path = path_list[path_index]
         aux = q.popleft()
         steps, y, x = aux[0], aux[1][0], aux[1][1]
         if grid[y][x] == "X":
-            return steps
+            return steps, current_path
         visited.add((y, x))
         for dir in directions:
             dir_y, dir_x = y + dir[0], x + dir[1]
@@ -43,7 +48,13 @@ def bfs(grid):
                 and grid[dir_y][dir_x] != "D"
                 and (dir_y, dir_x) not in visited
             ):
+                new_path = current_path[:]  # create shallow copy of the current path
+                new_path.append((dir_y, dir_x))
+                path_list.append(new_path)
                 q.append([steps + 1, (dir_y, dir_x)])
+
+        # at the end of each node analysis, we continue to the next path in the list
+        path_index += 1
     return -1
 
 
@@ -53,7 +64,8 @@ if __name__ == "__main__":
         ["O", "O", "O", "O"],
         ["D", "O", "D", "O"],
         ["O", "O", "O", "O"],
-        ["O", "D", "D", "X"],
+        ["X", "D", "D", "O"],
     ]
-    nb_min_steps_from_treasure = bfs(map)
+    nb_min_steps_from_treasure, path = bfs(map)
     print(nb_min_steps_from_treasure)
+    print("minimum path is:", path)
