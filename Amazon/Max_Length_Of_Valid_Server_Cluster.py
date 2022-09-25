@@ -15,45 +15,52 @@
 # find largest sum with sliding window
 
 
-def func(pp, bp, max_allowed):
-    # base cases
-    if not bp or not pp:
-        return 0
-    # create one single list for the powers
-    power = [x + y for x, y in zip(bp, pp)]
-    length = len(bp)
-    if length == 1:
-        if power[0] < max_allowed:
-            return 1
-        else:
-            return 0
-    # sliding window
-    l, r = 0, 1
-    max_coor = [-1, -1]  # keep track of the coordinates the extremities of our curr max
-    curr_max = -1
-    curr_sum = power[r] + power[l]
-    while l < length:
-        curr_pow = curr_sum * (r - l + 1)
-        # curr_power equal to target
-        if curr_pow == max_allowed:
-            return max_coor[1] - max_coor[0] + 1
-        # if left equal to right or curr power is less than max allowed
-        elif l == r and r != length - 1:
-            r += 1
-            curr_sum += bp[r] + pp[r]
-        # current power less than target
-        # try to push right further right
-        elif curr_pow < max_allowed:
-            r += 1
-            curr_sum += bp[r] + pp[r]
-            # verify if we have found a new max
-            if curr_max < curr_pow:
-                curr_max = curr_pow
-                max_coor = [l, r]
-        # current power greater than target, need to reduce the sum
-        elif curr_pow > max_allowed or r == length - 1:
-            curr_sum -= bp[l] + pp[l]
-            l += 1
-    if max_coor[0] == -1:
-        return 0
-    return max_coor[1] - max_coor[0] + 1
+from collections import deque
+
+
+def calcMaxLenght(processPower, bootPower, maxPower):
+    res = 0
+    l, r = 0, 0
+    sumVal = 0  # Help store the cumulative sum in the sliding window
+    window = deque()  # Help extract max value in the sliding window
+
+    while r < len(bootPower):
+        # Clear smaller values before appending the new value
+        while window and window[-1] < bootPower[r]:
+            window.pop()
+        # Append new value, expand the sliding window
+        window.append(bootPower[r])
+        # Get the max val in the curr sliding window from deque
+        maxVal = window[0]
+        sumVal += processPower[r]
+        r += 1  # Move forward the right pointer
+        consmp = maxVal + sumVal * (r - l)
+
+        # Shrink the window when consmp bigger than the threshold
+        while consmp > maxPower:
+            # Pop the left element from deque
+            # If head of deque isn't equal to lth element, it means that lth element is already popped out
+            if window[0] == bootPower[l]:
+                window.popleft()
+            maxVal = window[0]
+            sumVal -= processPower[l]
+            l += 1  # Move forward the left pointer
+            consmp = maxVal + sumVal * (r - l)
+
+        # Consmp is no bigger than the powerMax, satisfying the condition, update the max length
+        res = max(res, r - l)
+
+    return res  # The result
+
+
+def main():
+
+    bootingPower = [3, 6, 1, 3, 4]
+    processPower = [2, 1, 3, 4, 5]
+    powerMax = 25
+    maxLength = calcMaxLenght(processPower, bootingPower, powerMax)
+    print(maxLength)
+
+
+if __name__ == "__main__":
+    main()
