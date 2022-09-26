@@ -50,7 +50,7 @@ def calcMaxLenght(processPower, bootPower, maxPower):
         # Consmp is no bigger than the powerMax, satisfying the condition, update the max length
         res = max(res, r - l)
 
-    return res  # The result
+    return res
 
 
 def main():
