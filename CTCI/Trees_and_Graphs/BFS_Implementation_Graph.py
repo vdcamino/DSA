@@ -18,7 +18,7 @@ class Graph:
 
 
 def BFS(graph, starting_node):
-    visited = list()  # list that store the node that we already visited
+    visited = list()  # list that store the node that we have already visited
     q = deque()  # queue from which we will pop the current node
     visited.append(starting_node)
     q.append(starting_node)
