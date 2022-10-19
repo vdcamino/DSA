@@ -1,6 +1,3 @@
-from cmath import inf
-
-
 def findSmallest(arr):
     if not arr:
         return -1

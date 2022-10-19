@@ -1,6 +1,3 @@
-from cmath import inf
-
-
 def findPeak(nums):
     if not nums:
         return -1
