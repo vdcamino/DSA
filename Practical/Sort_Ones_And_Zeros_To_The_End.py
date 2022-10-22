@@ -17,9 +17,9 @@ def min_swaps(my_list):
                 # we calculate how many swaps it would take to bring this 0 till the last incorrect index
                 swaps += (
                     i - last_incorrect_index
-                )  # we know that the last incorrect index will have the good index of the last one becuase we only increment last_incorrect_index when we find target
+                )  # we know that the last incorrect index will have the good index of the last one because we only increment last_incorrect_index when we find target
                 last_incorrect_index += 1
-                # so if we continune traversing our array NOT findinf the target, the last_incorrect_index will have the value of the first incorrect index we have encountered
+                # so if we continune traversing our array NOT finding the target, the last_incorrect_index will have the value of the first incorrect index we have encountered
         return swaps
 
     return min(count_swaps_to_left(1), count_swaps_to_left(0))
