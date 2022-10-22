@@ -14,8 +14,6 @@ class Node:
 
 
 # Given a binary tree, print its nodes in reverse level order
-
-
 def reverseLevelOrder(root):
     # we can use a double ended queue which provides O(1) insert at the beginning
     # using the appendleft method
