@@ -23,14 +23,16 @@ class Graph:
         heapq.heappush(minHeap, (0, start))
 
         while minHeap:
-            # greedy : we always pop from the minHeap the node that is closest to the source
+            # greedy: we always pop from the minHeap the node that is closest to the source
             curDist, curNode = heapq.heappop(minHeap)
+            # even though the first time the node is popped from the heap we get its shortest distance, a node can be pushed to the heap more than once
+            if visited[curNode]:
+                continue
             visited[curNode] = True
+            # the first time we pop the destination node, we are already sure that this is its best path
             if curNode == end:
                 break
             for neighborNode, neighborCost in self.adj_list[curNode]:
-                if visited[neighborNode] == True:
-                    continue
                 if curDist + neighborCost < dist[neighborNode]:
                     dist[neighborNode] = curDist + neighborCost
                     prev[neighborNode] = curNode
