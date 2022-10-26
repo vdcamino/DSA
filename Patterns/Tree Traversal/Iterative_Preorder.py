@@ -1,5 +1,4 @@
-# Python program for iterative postorder
-# traversal using two stacks
+# Python program to perform iterative preorder traversal
 
 # A binary tree node
 class Node:
@@ -11,47 +10,42 @@ class Node:
         self.right = None
 
 
-# An iterative function to do postorder
-# traversal of a given binary tree
-def postOrderIterative(root):
+# An iterative process to print preorder traversal of BT
+def iterativePreorder(root):
 
+    # Base CAse
     if root is None:
         return
 
-    # Create two stacks
-    s1 = []
-    s2 = []
+    # create an empty stack and push root to it
+    nodeStack = []
+    nodeStack.append(root)
 
-    # Push root to first stack
-    s1.append(root)
+    # Pop all items one by one. Do following for every popped item
+    # a) print it
+    # b) push its right child
+    # c) push its left child
+    # Note that right child is pushed first so that left
+    # is processed first */
+    while len(nodeStack) > 0:
 
-    # Run while first stack is not empty
-    while s1:
-
-        # Pop an item from s1 and
-        # append it to s2
-        node = s1.pop()
-        s2.append(node)
-
-        # Push left and right children of
-        # removed item to s1
-        if node.left:
-            s1.append(node.left)
-        if node.right:
-            s1.append(node.right)
-
-    # Print all elements of second stack
-    while s2:
-        node = s2.pop()
+        # Pop the top item from stack and print it
+        node = nodeStack.pop()
         print(node.data, end=" ")
+
+        # Push right and left children of the popped node
+        # to stack
+        if node.right is not None:
+            nodeStack.append(node.right)
+        if node.left is not None:
+            nodeStack.append(node.left)
 
 
 # Driver program to test above function
-root = Node(1)
-root.left = Node(2)
-root.right = Node(3)
-root.left.left = Node(4)
+root = Node(10)
+root.left = Node(8)
+root.right = Node(2)
+root.left.left = Node(3)
 root.left.right = Node(5)
-root.right.left = Node(6)
-root.right.right = Node(7)
-postOrderIterative(root)
+root.right.left = Node(2)
+iterativePreorder(root)
