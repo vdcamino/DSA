@@ -42,7 +42,7 @@ class Vehicle:
         self.type = None
         self.plate = None
         self.parkingTicket = None
-        self.paymentInfo = None
+        self.payments = []
 
 
 class ParkingLot:
@@ -172,14 +172,12 @@ class ParkingAttendant(Account):
 
 
 class Payment:
-    def makePayment(self, ticket: ParkingTicket, paymentType: PaymentType):
-        return None
-
-
-class PaymentInfo:
     def __init__(self):
         self.amount = None
         self.type = None
         self.date = None
         self.parkingTicket = None
         self.status = None
+
+    def makePayment(self, ticket: ParkingTicket, paymentType: PaymentType):
+        return None
