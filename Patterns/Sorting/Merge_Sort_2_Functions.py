@@ -1,4 +1,4 @@
-# recurse until you be able to call merge on only sorted arrays
+# Divide: recurse until you be able to call merge on only sorted arrays
 def mergesort(arr):
     if len(arr) <= 1:
         return arr
@@ -8,7 +8,7 @@ def mergesort(arr):
     return merge(left, right)
 
 
-# function that merges two sorted arrays
+# Conquer: function that merges two sorted arrays
 def merge(first_arr, second_arr):
     res = (
         []
