@@ -23,7 +23,7 @@ def merge(first_arr, second_arr):
             res.append(second_arr[j])
             j += 1
     # chain the remaining array with res
-    if i == len(first_arr):  # i traversed its whole array, so chain with j's array
+    if i == len(first_arr):  # i traversed its whole array, so chain res with j's array
         res += second_arr[j:]
     else:
         res += first_arr[i:]
