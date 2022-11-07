@@ -49,7 +49,7 @@ class MyCalendar(object):
                 node.left = new_node
                 return True
 
-        # if no insertion was possible, return False
+        # if no insertion was possible, there is an overlap
         return False
 
     def book(self, start, end):
