@@ -6,6 +6,7 @@ class TreeNode:
 
 
 class Solution:
+    # Global variables to keep keep track of where we are on each traversal
     preIndex, postIndex = 0, 0
 
     def constructFromPrePost(self, preorder: List[int], postorder: List[int]):
