@@ -31,3 +31,12 @@ class Solution:
                     bfs(row, col)
 
         return res
+
+
+# TC = O(N), where N = number of cells
+# SC = O(min(ROWS, COLS)), the size of the queue is proportional to the smallest dimension because that's what limits the queue size
+# Example: Grid of dimensions 3x1000
+# ......QXXXQ.........
+# ....QXXXXXQ........
+# ......QXXXQ.........
+# --> The row dimension (3) is the one that dictates the space complexity
