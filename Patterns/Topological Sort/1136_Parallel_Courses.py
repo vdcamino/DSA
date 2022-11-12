@@ -21,7 +21,7 @@ class Solution:
         # variable to check cycles
         visited = 0
 
-        # traverse graph starting from in_degree = 0
+        # traverse graph starting from nodes with in_degree = 0
         while nodes_in_degree_zero:
             nodes_in_this_level = len(nodes_in_degree_zero)
             visited += nodes_in_this_level
