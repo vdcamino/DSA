@@ -20,7 +20,6 @@ class Solution1:
         return self.inorder_successor_node
 
     def inorderCase2(self, node: "TreeNode", p: "TreeNode"):
-
         if not node:
             return
 
@@ -37,3 +36,28 @@ class Solution1:
 
         # Recurse on the right side
         self.inorderCase2(node.right, p)
+
+
+# TC = O(N)
+# SC = O(N)
+
+
+class Solution2:
+    def inorderSuccessor(self, root: "TreeNode", p: "TreeNode") -> "TreeNode":
+        # if node can be the extreme right node, we need to initialize successor as None
+        successor = None
+
+        while root:
+            # just go to the right, successor will not be in left subtree neither in the current root
+            if p.val >= root.val:
+                root = root.right
+
+            # if node is in the left subtree, the current node is a potential candidate (left -> root ->right)
+            else:
+                successor = root
+                root = root.left
+        return successor
+
+
+# SC = O(1)
+# TC = O(N)
