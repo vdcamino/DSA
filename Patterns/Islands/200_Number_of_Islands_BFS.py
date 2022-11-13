@@ -34,9 +34,12 @@ class Solution:
 
 
 # TC = O(N), where N = number of cells
-# SC = O(min(ROWS, COLS)), the size of the queue is proportional to the smallest dimension because that's what limits the queue size
+# SC:
+# - If we can modify the data:
+# O(min(ROWS, COLS)), the size of the queue is proportional to the smallest dimension because that's what limits the queue size
 # Example: Grid of dimensions 3x1000
 # ......QXXXQ.........
 # ....QXXXXXQ........
 # ......QXXXQ.........
 # --> The row dimension (3) is the one that dictates the space complexity
+# - If we cannot modify the data, O(ROWS*COLS) because of the visited set/array
