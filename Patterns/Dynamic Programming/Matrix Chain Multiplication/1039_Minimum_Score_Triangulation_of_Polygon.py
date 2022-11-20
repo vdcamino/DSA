@@ -3,7 +3,7 @@ class Solution:
         cache = {}
 
         # function the gets the minimum possible triangulation score
-        # with left and right (included) as two of the bounds
+        # with left and right (included) as two of the boundaries
         def dfs(left, right):
             # base case
             if right - left + 1 < 3:
