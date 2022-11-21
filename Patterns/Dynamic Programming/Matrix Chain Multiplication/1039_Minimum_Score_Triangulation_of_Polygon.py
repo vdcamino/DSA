@@ -22,7 +22,7 @@ class Solution:
                     + dfs(left, i)
                     + dfs(i, right)
                 )
-                # try to update score for these bounds
+                # try to update score for this fixed edge
                 cache[(left, right)] = min(cache[(left, right)], score)
             return cache[(left, right)]
 
